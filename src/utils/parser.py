@@ -5,7 +5,7 @@ import urllib.request as ulib
 from bs4 import BeautifulSoup
 
 
-def get_author_schedule_by_day(url, day):
+def get_raw_page(url):
     request = ulib.Request(url)
     request.add_header('Accept-Encoding', 'utf-8')
     response = ulib.urlopen(request)
@@ -17,6 +17,11 @@ def get_author_schedule_by_day(url, day):
         return
     else:
         raw_data = raw_data[0].text
+    return raw_data
+
+
+def get_author_schedule_by_day(url, day):
+    raw_data = get_raw_page(url)
 
     get_element = False
     first_item = True
@@ -48,11 +53,31 @@ def get_author_schedule_by_day(url, day):
     return schedule
 
 
-def get_scene_schedule(url):
-    pass
+def get_scene_schedule_by_day(url, day):
+    raw_data = get_raw_page(url)
 
-# string = get_author_schedule_by_day("https://scn.grushinka.ru/guest/gorodnickiy-aleksandr", 'Пятница')
-# print(string)
-# print(string.split())
+    get_element = False
+    first_item = True
+    schedule = ''
 
-# 3 -
+    wrong_days = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
+    wrong_days.remove(day)
+
+    for item in raw_data.split():
+        if item == day:
+            get_element = True
+            continue
+        elif item in wrong_days:
+            get_element = False
+        elif get_element:
+            if (item[0] in ['0', '1', '2']) and (':' in item):
+                schedule = schedule + '\n' + item
+                if not first_item:
+                    schedule = schedule + ' ' + item
+                else:
+                    schedule = item
+                    first_item = False
+            else:
+                schedule = schedule + ' ' + item
+
+    return schedule

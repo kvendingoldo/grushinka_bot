@@ -3,14 +3,25 @@
 # from data.static import scenes
 from db.mongo import connect
 from config import db_url, db_collection
-from utils.parser import get_author_schedule_by_day
+from utils.parser import get_author_schedule_by_day, get_scene_schedule_by_day
 
 
 def update_scenes():
     db = connect(db_url, db_collection)
 
     for scene in db['scenes'].find():
-        print(scene)
+        for day in db['days'].find():
+            schedule = get_scene_schedule_by_day(scene['url'], day['name'])
+            if schedule is not None:
+                db['scenes'].update_one(
+                    scene,
+                    {"$set":
+                        {
+                            day['name']: schedule
+                        }
+                    },
+                    upsert=False
+                )
 
 
 def update_authors():

@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
 
     #Process(target=update_scenes, args=()).start()
-    update_authors_proccess = Thread(target=update_authors, args=())
+    update_authors_proccess = Thread(target=update_scenes, args=())
     update_authors_proccess.start()
     update_authors_proccess.join()
 
