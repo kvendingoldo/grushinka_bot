@@ -1,0 +1,170 @@
+[
+  {
+    "name": "а",
+    "collection": "l1m"
+  },
+  {
+    "name": "Б",
+    "collection": "l2"
+  },
+  {
+    "name": "В",
+    "collection": "l3"
+  },
+  {
+    "name": "в",
+    "collection": "l3m"
+  },
+  {
+    "name": "Г",
+    "collection": "l4"
+  },
+  {
+    "name": "г",
+    "collection": "l4m"
+  },
+  {
+    "name": "Д",
+    "collection": "l5"
+  },
+  {
+    "name": "д",
+    "collection": "l5m"
+  },
+  {
+    "name": "Е",
+    "collection": "l6"
+  },
+  {
+    "name": "Ж",
+    "collection": "l8"
+  },
+  {
+    "name": "з",
+    "collection": "l9m"
+  },
+  {
+    "name": "З",
+    "collection": "l9"
+  },
+  {
+    "name": "И",
+    "collection": "l10"
+  },
+  {
+    "name": "К",
+    "collection": "l12"
+  },
+  {
+    "name": "к",
+    "collection": "l12m"
+  },
+  {
+    "name": "Л",
+    "collection": "l13"
+  },
+  {
+    "name": "л",
+    "collection": "l13m"
+  },
+  {
+    "name": "М",
+    "collection": "l14"
+  },
+  {
+    "name": "м",
+    "collection": "l14m"
+  },
+  {
+    "name": "Н",
+    "collection": "l15"
+  },
+  {
+    "name": "н",
+    "collection": "l15m"
+  },
+  {
+    "name": "О",
+    "collection": "l16"
+  },
+  {
+    "name": "о",
+    "collection": "l16m"
+  },
+  {
+    "name": "П",
+    "collection": "l17"
+  },
+  {
+    "name": "п",
+    "collection": "l17m"
+  },
+  {
+    "name": "Р",
+    "collection": "l18"
+  },
+  {
+    "name": "р",
+    "collection": "l18m"
+  },
+  {
+    "name": "С",
+    "collection": "l19"
+  },
+  {
+    "name": "с",
+    "collection": "l19m"
+  },
+  {
+    "name": "Т",
+    "collection": "l20"
+  },
+  {
+    "name": "т",
+    "collection": "l20m"
+  },
+  {
+    "name": "У",
+    "collection": "l21"
+  },
+  {
+    "name": "у",
+    "collection": "l21m"
+  },
+  {
+    "name": "Ф",
+    "collection": "l22"
+  },
+  {
+    "name": "ф",
+    "collection": "l22m"
+  },
+  {
+    "name": "Х",
+    "collection": "l23"
+  },
+  {
+    "name": "Ч",
+    "collection": "l25"
+  },
+  {
+    "name": "Ш",
+    "collection": "l26"
+  },
+  {
+    "name": "Щ",
+    "collection": "l27"
+  },
+  {
+    "name": "э",
+    "collection": "l31"
+  },
+  {
+    "name": "Ю",
+    "collection": "l32"
+  },
+  {
+    "name": "Я",
+    "collection": "l33"
+  }
+]
