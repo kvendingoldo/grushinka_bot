@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# from data.static import scenes
 from db.mongo import connect
 from config import db_url, db_collection
 from utils.parser import get_author_schedule_by_day, get_scene_schedule_by_day

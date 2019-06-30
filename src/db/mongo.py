@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-
 from pymongo import MongoClient
 from pymongo.errors import ServerSelectionTimeoutError
 
@@ -15,19 +14,3 @@ def connect(url, db_name):
         print("server is down.")
 
     return db
-
-
-def get_author_by_day():
-    pass
-
-
-def get_scene_by_day():
-    pass
-
-
-def put_author():
-    pass
-
-
-def put_scene():
-    pass
