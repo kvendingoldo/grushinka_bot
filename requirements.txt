@@ -1,0 +1,8 @@
+pyTelegramBotAPI
+requests
+six
+pysocks
+
+bs4
+lxml
+pymongo

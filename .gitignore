@@ -1,0 +1,36 @@
+### Folders
+out/
+target/
+tmp/
+__pycache__
+
+### Python
+venv/
+
+
+### Extensions
+*.ids
+*.xml
+*.iws
+*.crt
+*.key
+*.csr
+*.pem
+*.p12
+*.iml
+.idea
+.DS_Store
+*-overriding.properties
+*.pyc
+
+
+### Files
+cookies.*
+
+
+# Temp
+*tmp*
+
+
+# Credentials
+*credentials*

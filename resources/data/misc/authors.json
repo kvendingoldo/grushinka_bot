@@ -1,0 +1,24 @@
+[
+  {
+    "letter": "д",
+    "authors": [
+      {
+        "name": "Дайте Грэмми",
+        "url": "https://scn.grushinka.ru/guest/dayte-gremmi"
+      },
+      {
+        "name": "дуэт Вадим и Валерий Мищуки",
+        "url": "https://scn.grushinka.ru/guest/duet-vadim-i-valeriy-mishchuki"
+      }
+    ]
+  },
+  {
+    "letter": "у",
+    "authors": [
+      {
+        "name": "Уриевский Василий",
+        "url": "https://scn.grushinka.ru/guest/urievskiy-vasiliy"
+      }
+    ]
+  }
+]
