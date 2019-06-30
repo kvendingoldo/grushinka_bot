@@ -1,13 +1,19 @@
 # -*- coding: utf-8 -*-
 
 import sys
+import time
 
 from db.mongo import connect
 from utils.parser import get_author_schedule_by_day, get_scene_schedule_by_day
 
-
 sys.path.append('../resources/')
 from config import db_url, db_collection
+
+
+def update_scenes_daemon(sleep_time_second=3600):
+    while True:
+        update_scenes()
+        time.sleep(sleep_time_second)
 
 
 def update_scenes():
@@ -26,6 +32,12 @@ def update_scenes():
                     },
                     upsert=False
                 )
+
+
+def update_authors_daemon(sleep_time_second=3600):
+    while True:
+        update_authors()
+        time.sleep(sleep_time_second)
 
 
 def update_authors():

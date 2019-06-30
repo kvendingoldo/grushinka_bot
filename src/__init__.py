@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['db', 'utils']
+__all__ = ['bot', 'db', 'utils']
