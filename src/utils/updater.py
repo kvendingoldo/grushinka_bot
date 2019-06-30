@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import sys
+
 from db.mongo import connect
-from config import db_url, db_collection
 from utils.parser import get_author_schedule_by_day, get_scene_schedule_by_day
+
+
+sys.path.append('../resources/')
+from config import db_url, db_collection
 
 
 def update_scenes():

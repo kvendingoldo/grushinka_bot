@@ -66,3 +66,29 @@ def authors(message):
 ### авторы
 #authors_list = get_authors_list()
 #scenes_list = get_scenes_list()
+
+
+    # author_collection_name = db['letters'].find({'name': letter})[0]['collection']
+
+
+
+#@bot.callback_query_handler(func=lambda call: True)
+def callback(query):
+
+
+    try:
+        data = json.loads(query.data)
+        if 'cat' in data:
+            if data['cat'] == 'aut_l1':
+                callback_author_l1(bot, query)
+            elif data['cat'] == 'aut_l2':
+                callback_author_l2(bot, query,  data['col'], data['aut_id'])
+            elif data['cat'] == 'aut_l3':
+                callback_author_l3(bot, query, data['col'], data['aut_id'], data['day'])
+
+
+        # elif 'author_url' in data:
+        #    print('WE HERE')
+        #    callback_author_time_2(bot, query, data['author_url'])
+    except ValueError:
+        pass

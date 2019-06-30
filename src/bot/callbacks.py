@@ -1,8 +1,21 @@
+# -*- coding: utf-8 -*-
+
+import sys
+import json
+
 from telebot.types import InlineKeyboardButton, InlineKeyboardMarkup, ReplyKeyboardMarkup, KeyboardButton
 
+from db.mongo import connect
 
-def callback_author_time_2(bot, query, author_url):
+sys.path.append('../resources/')
+from config import db_url, db_collection
+
+
+def callback_author_l3(bot, query, letter_collection, author_id, day):
     message = query.message
+
+    # db[letter_collection].find({'_id': author_id})[day]
+
     bot.edit_message_text(
         'generate_author_schedule(author_url)',
         message.chat.id,
@@ -11,7 +24,9 @@ def callback_author_time_2(bot, query, author_url):
     )
 
 
-def callback_author_time(bot, query, author):
+def callback_author_l2(bot, query, letter_collection, author_id):
+    db = connect(db_url, db_collection)
+
     bot.answer_callback_query(query.id)
 
     message = query.message
@@ -19,9 +34,12 @@ def callback_author_time(bot, query, author):
     keyboard = InlineKeyboardMarkup()
 
     row = []
-    for date in dates:
-        row.append(InlineKeyboardButton(date, callback_data=json.dumps({
-            'author_data': 'todo'
+    for day in db['days'].find():
+        row.append(InlineKeyboardButton(day, callback_data=json.dumps({
+            'cat': 'aut_l3',
+            'col': letter_collection,
+            'aut_id': author_id,
+            'day': day
         })))
 
     keyboard.row(*row)
@@ -36,25 +54,5 @@ def callback_author_time(bot, query, author):
     )
 
 
-def callback_authors_by_letter(bot, query, letter):
-    bot.answer_callback_query(query.id)
 
-    message = query.message
 
-    keyboard = InlineKeyboardMarkup()
-
-    row = []
-    for author in get_authors_list_by_letter(letter):
-        row.append(InlineKeyboardButton(author, callback_data=json.dumps({
-            'author': get_author_code(author)
-        })))
-
-    keyboard.row(*row)
-
-    bot.edit_message_text(
-        'todo',
-        message.chat.id,
-        message.message_id,
-        reply_markup=keyboard,
-        parse_mode='HTML'
-    )
