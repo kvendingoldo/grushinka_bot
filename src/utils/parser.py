@@ -123,6 +123,6 @@ def prepare_basic_collections(url):
             author = element.findAll('a')[0]
 
             db[cur_author_collection].insert_one({
-                'author': author.get('href'),
-                'url': author.contents[0]
+                'name': author.contents[0],
+                'url': 'https://scn.grushinka.ru' + author.get('href')
             })
