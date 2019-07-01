@@ -21,10 +21,22 @@ telebot.logger.setLevel(logging.INFO)
 
 text_messages = {
     'start':
-        u'Приветствую тебя, {name}!\n',
+        u'Приветствую тебя, {name}!\nВ случае проблем с ботом официальный сайт с расписанием доступен тут: https://scn.grushinka.ru',
     'help':
-        u'Пока что я не знаю, чем тебе помочь, поэтому просто выпей кофе!'
+        'Доступные команды:\n/site - официальный сайт\n/help - подсказка\n/start - начать работу с ботом',
+    'site':
+        'Сайт с официальным расписанием доступен тут: https://scn.grushinka.ru'
 }
+
+
+@bot.message_handler(commands=['site'])
+def send_help(message):
+    bot.send_message(message.from_user.id, text_messages['site'])
+
+
+@bot.message_handler(commands=['help'])
+def send_help(message):
+    bot.send_message(message.from_user.id, text_messages['help'])
 
 
 @bot.message_handler(commands=['start'])
@@ -49,7 +61,7 @@ def choose_category(message):
 
     if message.text == 'автор':
         new_menu = ['по алфавиту']  # , 'по имени']
-        new_msg = 'Как вы хотите выбрать?'
+        new_msg = 'Выберите пожалуйста букву'
         new_handler = choose_author_l1
 
     elif message.text == 'сцена':
