@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import sys
 import urllib.request as ulib
 
 from bs4 import BeautifulSoup
+
+from db.mongo import connect
+
+sys.path.append('../resources/')
+from config import db_url, db_collection
 
 
 def get_raw_page(url):
@@ -81,3 +87,42 @@ def get_scene_schedule_by_day(url, day):
                 schedule = schedule + ' ' + item
 
     return schedule
+
+
+def prepare_basic_collections(url):
+    db = connect(db_url, db_collection)
+
+    request = ulib.Request(url)
+    request.add_header('Accept-Encoding', 'utf-8')
+    response = ulib.urlopen(request)
+    soup = BeautifulSoup(response, 'lxml')
+
+    raw_data = soup.find_all('div', attrs={'class': 'view-content'})
+
+    result = []
+
+    for element_l1 in raw_data:
+        for element_l2 in element_l1.find_all(['h3', 'span']):
+            result.append(element_l2)
+
+    letters_collection = db['letters']
+    cur_author_collection = ''
+    letter_number = 1
+
+    for element in result:
+        if element.name == 'h3':
+            cur_author_collection = 'l%s' % (str(letter_number))
+            letters_collection.insert_one({
+                'name': element.contents[0],
+                'collection': cur_author_collection
+            })
+
+            letter_number += 1
+
+        else:
+            author = element.findAll('a')[0]
+
+            db[cur_author_collection].insert_one({
+                'author': author.get('href'),
+                'url': author.contents[0]
+            })
