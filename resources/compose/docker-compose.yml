@@ -1,5 +1,14 @@
 ---
 version: '3'
+
+networks:
+  grushinka-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.4.0/26
+
 services:
   grushinka-mongo:
     container_name: grushinka-mongodb
@@ -8,3 +17,11 @@ services:
       - 27017:27017
     environment:
       MONGO_INITDB_DATABASE: 'grushinka'
+    networks:
+      - grushinka-network
+
+  grushinka-bot:
+    container_name: grushinka-bot
+    image: grushinka:1.0
+    networks:
+      - grushinka-network
