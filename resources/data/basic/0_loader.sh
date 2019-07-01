@@ -4,8 +4,11 @@ CONTAINER_NAME='grushinka-mongodb'
 DATABASE='grushinka'
 
 function main() {
-    docker cp days.json ${CONTAINER_NAME}:/tmp
-    docker exec -it ${CONTAINER_NAME} mongoimport --db "${DATABASE}" --collection 'days' --jsonArray /tmp/days.json
+    for FILE in *.json; do
+        docker cp ${FILE} ${CONTAINER_NAME}:/tmp
+        docker exec -it ${CONTAINER_NAME} mongo "${DATABASE}" --eval "db.${FILE%%.json}.drop()"
+        docker exec -it ${CONTAINER_NAME} mongoimport --db "${DATABASE}" --collection ${FILE%%.json} --jsonArray /tmp/${FILE}
+    done
 }
 
 main "${@}"

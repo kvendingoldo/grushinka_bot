@@ -94,10 +94,11 @@ def choose_scene_final(message, name):
     if message.text == 'Все дни':
         schedule = ''
         for day in ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']:
-            schedule_day = scene[day]
+            if day in scene:
+                schedule_day = scene[day]
 
-            if (schedule_day != '') and (schedule_day is not None):
-                schedule = schedule + '\n\n' + day + '\n' + schedule_day
+                if (schedule_day != '') and (schedule_day is not None):
+                    schedule = schedule + '\n\n' + day + '\n' + schedule_day
         if schedule != '':
             bot.send_message(message.from_user.id, schedule)
         else:
@@ -105,8 +106,11 @@ def choose_scene_final(message, name):
         bot.register_next_step_handler(message, choose_scene_final, name)
 
     else:
-        if (scene[message.text] != '') and (scene[message.text] is not None):
-            bot.send_message(message.from_user.id, scene[message.text])
+        if message.text in scene:
+            if scene[message.text] != '':
+                bot.send_message(message.from_user.id, scene[message.text])
+            else:
+                bot.send_message(message.from_user.id, 'В этот день ничего нет!')
         else:
             bot.send_message(message.from_user.id, 'В этот день ничего нет!')
         bot.register_next_step_handler(message, choose_scene_final, name)
@@ -196,10 +200,10 @@ def choose_author_final(message, data):
 
         schedule = ''
         for day in ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']:
-            schedule_day = author[day]
-
-            if (schedule_day != '') and (schedule_day is not None):
-                schedule = schedule + '\n\n' + day + '\n' + schedule_day
+            if day in author:
+                schedule_day = author[day]
+                if (schedule_day != '') and (schedule_day is not None):
+                    schedule = schedule + '\n\n' + day + '\n' + schedule_day
         if schedule != '':
             bot.send_message(message.from_user.id, schedule)
         else:
@@ -211,10 +215,14 @@ def choose_author_final(message, data):
         }))
 
     else:
-        if (author[message.text] != '') and (author[message.text] is not None):
-            bot.send_message(message.from_user.id, author[message.text])
+        if message.text in author:
+            if author[message.text] != '':
+                bot.send_message(message.from_user.id, author[message.text])
+            else:
+                bot.send_message(message.from_user.id, 'В этот день ничего нет!')
         else:
             bot.send_message(message.from_user.id, 'В этот день ничего нет!')
+
         bot.register_next_step_handler(message, choose_author_final, json.dumps({
             'name': data['name'],
             'col': data['col'],
