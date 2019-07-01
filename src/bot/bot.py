@@ -16,7 +16,7 @@ from config import db_url, db_collection
 
 apihelper.proxy = {'https': proxy}
 bot = TeleBot(token)
-telebot.logger.setLevel(logging.DEBUG)
+telebot.logger.setLevel(logging.INFO)
 # bot.enable_save_next_step_handlers(delay=2)
 
 text_messages = {

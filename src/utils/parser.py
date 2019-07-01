@@ -37,24 +37,27 @@ def get_author_schedule_by_day(url, day):
     wrong_days = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
     wrong_days.remove(day)
 
-    for item in raw_data.split():
-        if item == day:
-            get_element = True
-            continue
-        elif item in wrong_days:
-            get_element = False
-        elif get_element:
-            if (item[0] in ['0', '1', '2']) and (':' in item):
-                new_event += 1
-            if new_event % 3 == 0:
-                schedule = schedule + '\n' + item
-                new_event = 1
-            else:
-                if not first_item:
-                    schedule = schedule + ' ' + item
+    try:
+        for item in raw_data.split():
+            if item == day:
+                get_element = True
+                continue
+            elif item in wrong_days:
+                get_element = False
+            elif get_element:
+                if (item[0] in ['0', '1', '2']) and (':' in item):
+                    new_event += 1
+                if new_event % 3 == 0:
+                    schedule = schedule + '\n' + item
+                    new_event = 1
                 else:
-                    schedule = item
-                    first_item = False
+                    if not first_item:
+                        schedule = schedule + ' ' + item
+                    else:
+                        schedule = item
+                        first_item = False
+    except:
+        print("Something went wrong (author) %s" % url)
 
     return schedule
 
@@ -69,22 +72,25 @@ def get_scene_schedule_by_day(url, day):
     wrong_days = ['Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье']
     wrong_days.remove(day)
 
-    for item in raw_data.split():
-        if item == day:
-            get_element = True
-            continue
-        elif item in wrong_days:
-            get_element = False
-        elif get_element:
-            if (item[0] in ['0', '1', '2']) and (':' in item):
-                schedule = schedule + '\n' + item
-                if not first_item:
-                    schedule = schedule + ' ' + item
+    try:
+        for item in raw_data.split():
+            if item == day:
+                get_element = True
+                continue
+            elif item in wrong_days:
+                get_element = False
+            elif get_element:
+                if (item[0] in ['0', '1', '2']) and (':' in item):
+                    schedule = schedule + '\n' + item
+                    if not first_item:
+                        schedule = schedule + ' ' + item
+                    else:
+                        schedule = item
+                        first_item = False
                 else:
-                    schedule = item
-                    first_item = False
-            else:
-                schedule = schedule + ' ' + item
+                    schedule = schedule + ' ' + item
+    except:
+        print("Something went wrong (scene) %s" % url)
 
     return schedule
 
