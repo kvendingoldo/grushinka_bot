@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
+import time
+
 from threading import Thread
 
 from utils.parser import prepare_basic_collections
@@ -9,6 +11,8 @@ from bot.bot import start_grushinka
 
 if __name__ == '__main__':
     prepare_basic_collections("https://scn.grushinka.ru/guests")
+
+    time.sleep(15)
 
     update_authors_proccess = Thread(target=update_scenes_daemon, args=())
     update_authors_proccess.start()

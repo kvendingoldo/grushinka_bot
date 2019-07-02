@@ -164,7 +164,6 @@ def choose_author_l2(message):
     author_collection_name = db['letters'].find({'name': message.text})[0]['collection']
 
     for author in db[author_collection_name].find():
-        print(author)
         new_menu.append(author['name'])
 
     markup = create_menu(new_menu, back=True)
@@ -245,7 +244,7 @@ def choose_author_final(message, data):
 
 def start_grushinka():
     try:
-        bot.polling(none_stop=True)
+        bot.polling(none_stop=True, interval=1, timeout=10)
     except BaseException as exception:
         print(exception)
         print('Connection refused')

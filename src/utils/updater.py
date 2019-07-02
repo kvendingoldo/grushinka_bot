@@ -32,6 +32,7 @@ def update_scenes():
                     },
                     upsert=False
                 )
+        print('[cron] %s is updated' % scene['name'])
 
 
 def update_authors_daemon(sleep_time_second=3600):
@@ -60,3 +61,4 @@ def update_authors():
                         },
                         upsert=False
                     )
+            print('[cron] %s is updated' % author['name'])
