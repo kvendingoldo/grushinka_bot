@@ -8,4 +8,4 @@ db_collection = 'grushinka'
 
 # Misc
 data_dir = '.'
-first_run = True
+first_run = False
