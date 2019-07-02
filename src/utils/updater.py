@@ -2,6 +2,7 @@
 
 import sys
 import time
+import logging
 
 from db.mongo import connect
 from utils.parser import get_author_schedule_by_day, get_scene_schedule_by_day
@@ -12,6 +13,7 @@ from config import db_url, db_collection
 
 def update_scenes_daemon(sleep_time_second=3600):
     while True:
+        logging.info('update_scenes_daemon started to work')
         update_scenes()
         time.sleep(sleep_time_second)
 
@@ -32,11 +34,12 @@ def update_scenes():
                     },
                     upsert=False
                 )
-        print('[cron] %s is updated' % scene['name'])
+        logging.info('[cron] %s is updated' % scene['name'])
 
 
 def update_authors_daemon(sleep_time_second=3600):
     while True:
+        logging.info('update_authors_daemon started to work')
         update_authors()
         time.sleep(sleep_time_second)
 
@@ -61,4 +64,4 @@ def update_authors():
                         },
                         upsert=False
                     )
-            print('[cron] %s is updated' % author['name'])
+            logging.info('[cron] %s is updated' % author['name'])

@@ -6,4 +6,6 @@ proxy = 'socks5h://kvendingoldoU8:G1w9XgO@185.17.121.204:34513'
 db_url = 'mongodb://grushinka-mongodb:27017/'
 db_collection = 'grushinka'
 
-
+# Misc
+data_dir = '.'
+first_run = True
