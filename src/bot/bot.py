@@ -4,6 +4,7 @@ import telebot
 import json
 import sys
 import logging
+import time
 
 from telebot import TeleBot, apihelper, types
 
@@ -243,8 +244,9 @@ def choose_author_final(message, data):
 
 
 def start_grushinka():
-    try:
-        bot.polling(none_stop=True, interval=1, timeout=10)
-    except BaseException as exception:
-        print(exception)
-        print('Connection refused')
+    while True:
+        try:
+            bot.polling(none_stop=True, interval=1, timeout=10)
+        except Exception as e:
+            logging.info("[telegram] Failed: " % e)
+            time.sleep(15)
