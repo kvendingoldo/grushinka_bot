@@ -10,6 +10,8 @@
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 CONTAINER_NAME='grushinka:1.0'
+FIRST_RUN='true'
+
 
 function main() {
     cd "${SCRIPT_DIR}/../.." || exit
@@ -18,9 +20,11 @@ function main() {
     cd "${SCRIPT_DIR}/../compose" || exit
     docker-compose up -d
 
-    sleep 5
-    cd "${SCRIPT_DIR}/../data" || exit
-    bash 0_loader.sh
+    if [[ "x${FIRST_RUN}" == 'xtrue' ]]; then
+        sleep 5
+        cd "${SCRIPT_DIR}/../data" || exit
+        bash 0_loader.sh
+    fi
 }
 
-main "${@}"
+main "${@}"s

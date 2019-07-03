@@ -13,6 +13,7 @@ from config import db_url, db_collection
 
 def update_scenes_daemon(sleep_time_second=3600):
     while True:
+        time.sleep(60)
         logging.info('update_scenes_daemon started to work')
         update_scenes()
         time.sleep(sleep_time_second)
@@ -39,6 +40,7 @@ def update_scenes():
 
 def update_authors_daemon(sleep_time_second=3600):
     while True:
+        time.sleep(60)
         logging.info('update_authors_daemon started to work')
         update_authors()
         time.sleep(sleep_time_second)
