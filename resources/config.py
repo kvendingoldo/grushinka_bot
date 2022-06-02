@@ -1,6 +1,7 @@
 # Telegram
-token = '877827920:AAHHJJbOO1_iMCeViGfXhjpLpXiE6tA5RzI'
-proxy = 'socks5://kvendingoldoU8:G1w9XgO@185.17.121.204:34513'
+token = '<BOT_TOKEN>'
+# proxy URL in format "socks5://<name>:<password>@ip:port"
+proxy = '<PROXY_URL>'
 
 # Mongo
 db_url = 'mongodb://grushinka-mongodb:27017/'
